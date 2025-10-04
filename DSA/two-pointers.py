@@ -46,6 +46,22 @@ def validPalindrome(s: str) -> bool:
             j -= 1
     return True
 
+def mostWater(height: list[int]) -> int:
+    l, r = 0, len(height)-1
+    water = 0
+
+    while l < r:
+        curHeight = min(height[l], height[r])
+        n = r - l
+        curWater = curHeight * n
+        if curWater > water:
+            water = curWater
+        if height[l] < height[r]:
+            l += 1
+        else:
+            r -= 1
+    return water
+
 if __name__ == "__main__":
     print(validPalindrome("racecar"))
     print(validPalindrome("a man, a plan, a canal: panama"))
