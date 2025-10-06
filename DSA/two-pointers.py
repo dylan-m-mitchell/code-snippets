@@ -46,6 +46,23 @@ def validPalindrome(s: str) -> bool:
             j -= 1
     return True
 
+# this is sort of two pointers but it is really a bucket sort problem
+def sortColors(nums: list[int]) -> None:
+    # given an array containing 0s, 1s, 2s, in random spots, sort the array in place
+    l = 0
+    bucket = [0,0,0]
+    while l < len(nums):
+        bucket[nums[l]] += 1
+        l += 1
+    
+    i = 0
+    k = 0
+    while i < len(nums):
+        for j in range(bucket[k]):
+            nums[i] = k
+            i += 1
+        k += 1
+
 if __name__ == "__main__":
     print(validPalindrome("racecar"))
     print(validPalindrome("a man, a plan, a canal: panama"))
@@ -75,3 +92,8 @@ if __name__ == "__main__":
         print(test)
         removeDuplicates(test)
         print(test)
+    
+    test = [2,0,2,1,1,0]
+    print(test)
+    sortColors(test)
+    print(test)
